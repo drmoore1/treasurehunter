@@ -27,7 +27,8 @@ namespace treasurehunter.Models
     // }
     public void Greeting()
     {
-      System.Console.WriteLine("Welcome to Treasure Hunter.");
+      Console.Clear();
+      SplashScreen();
       Console.ReadKey(true);
       Console.Clear();
       System.Console.WriteLine("You awake... cold and sore.");
@@ -116,7 +117,24 @@ namespace treasurehunter.Models
       System.Console.WriteLine();
       System.Console.WriteLine();
       System.Console.WriteLine("there are so many questions to answer still...");
+      System.Console.WriteLine();
+      System.Console.WriteLine();
+      System.Console.WriteLine("                                  Stay tuned for chapter 2");
       Environment.Exit(0);
+    }
+    public void SplashScreen()
+    {
+      System.Console.WriteLine(" ######  ####### ###  #####  ####### #     # ####### ######  ");
+      System.Console.WriteLine(" #     # #     #  #  #     # #     # ##    # #       #     # ");
+      System.Console.WriteLine(" #     # #     #  #  #       #     # # #   # #       #     # ");
+      System.Console.WriteLine(" ######  #     #  #   #####  #     # #  #  # #####   #     # ");
+      System.Console.WriteLine(" #       #     #  #        # #     # #   # # #       #     # ");
+      System.Console.WriteLine(" #       #     #  #  #     # #     # #    ## #       #     # ");
+      System.Console.WriteLine(" #       ####### ###  #####  ####### #     # ####### ######  ");
+      System.Console.WriteLine();
+      System.Console.WriteLine();
+      System.Console.WriteLine("Press Any Key To Continue");
+      Console.ReadKey(true);
     }
     public Game GetDirection(Game game)
     {
