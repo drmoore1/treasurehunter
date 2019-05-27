@@ -9,7 +9,19 @@ namespace treasurehunter.Models
     {
       Game ThisGame = game;
       Random random = new Random();
-      ThisGame.Player.Health = ThisGame.Player.Health - (random.Next(1, 8) * ThisGame.Player.PoisonRate);
+      int damage = (random.Next(1, 8) * ThisGame.Player.PoisonRate);
+
+
+      Console.Beep();
+      Console.BackgroundColor = ConsoleColor.DarkRed;
+      Console.ForegroundColor = ConsoleColor.Black;
+      ThisGame.Header(ThisGame);
+      System.Threading.Thread.Sleep(50);
+      Console.ResetColor();
+
+      ThisGame.Player.Health -= damage;
+
+
 
       return ThisGame;
     }

@@ -45,13 +45,7 @@ namespace treasurehunter.Models
     {
       Game ThisGame = game;
 
-      Console.Clear();
-      System.Console.WriteLine("Commands: Go North, Go East, Go South, Go West, Look, Take, Inventory, Quit");
-      System.Console.WriteLine($"Current Location: {ThisGame.CurrentRoom.Latitude} by {ThisGame.CurrentRoom.Longitude}");
-      System.Console.WriteLine($"Current Health  : {ThisGame.Player.Health}");
-      System.Console.WriteLine();
-      System.Console.WriteLine($"{ThisGame.CurrentRoom.Description}");
-      System.Console.WriteLine();
+      ThisGame = ThisGame.Header(ThisGame);
       ThisGame = ThisGame.GetDirection(ThisGame);
 
       return ThisGame;
@@ -79,6 +73,7 @@ namespace treasurehunter.Models
       string line17 = "    .                  .     OP'          : o.";
       string line18 = "                              :";
       #endregion
+      Console.ForegroundColor = ConsoleColor.DarkRed;
       System.Console.WriteLine(line1);
       System.Console.WriteLine(line2);
       System.Console.WriteLine(line3);
@@ -100,6 +95,7 @@ namespace treasurehunter.Models
       System.Console.WriteLine();
       System.Console.WriteLine();
       System.Console.WriteLine(".... you have succumbed to the poison....");
+      Console.ResetColor();
     }
     public void Win()
     {
@@ -113,10 +109,12 @@ namespace treasurehunter.Models
       System.Console.WriteLine();
       System.Console.WriteLine();
       System.Console.WriteLine("                                  Stay tuned for chapter 2");
+      Console.ResetColor();
       Environment.Exit(0);
     }
     public void SplashScreen()
     {
+      Console.ForegroundColor = ConsoleColor.DarkRed;
       System.Console.WriteLine(" ######  ####### ###  #####  ####### #     # ####### ######  ");
       System.Console.WriteLine(" #     # #     #  #  #     # #     # ##    # #       #     # ");
       System.Console.WriteLine(" #     # #     #  #  #       #     # # #   # #       #     # ");
@@ -124,10 +122,12 @@ namespace treasurehunter.Models
       System.Console.WriteLine(" #       #     #  #        # #     # #   # # #       #     # ");
       System.Console.WriteLine(" #       #     #  #  #     # #     # #    ## #       #     # ");
       System.Console.WriteLine(" #       ####### ###  #####  ####### #     # ####### ######  ");
+      Console.ResetColor();
       System.Console.WriteLine();
       System.Console.WriteLine();
       System.Console.WriteLine("Press Any Key To Continue");
       Console.ReadKey(true);
+
     }
     public Game GetDirection(Game game)
     {
@@ -209,15 +209,7 @@ namespace treasurehunter.Models
         }
         if (word == "inventory")
         {
-          Console.Clear();
-          System.Console.WriteLine("Your Current Inventory Includes:");
-          foreach (Item item in ThisGame.Player.Inventory)
-          {
-            System.Console.WriteLine(item.Name);
-            System.Console.WriteLine("Press Any Key To Continue");
-            Console.ReadKey(true);
-
-          }
+          ThisGame.Player.Inventory = Inventory(ThisGame.Player.Inventory);
           return ThisGame;
         }
 
@@ -228,46 +220,55 @@ namespace treasurehunter.Models
           Environment.Exit(0);
           break;
         }
+        if (word == "help")
+        {
+          Help();
+        }
         return ThisGame;
       }
-      #region OLD CODE
-      // if (userInput == "quit" || userInput == "q")
-      // {
-      //   Player.Health = 0;
-      //   Death();
-      //   Environment.Exit(0);
-      // }
-      // if (userInput == "north" || userInput == "n" || userInput == "go north")
-      // {
-      //   ThisGame.Direction = "north";
-      //   ThisGame = ThisGame.CurrentRoom.Navigator(ThisGame);
 
-      // }
-      // if (userInput == "east" || userInput == "e" || userInput == "go east")
-      // {
-      //   ThisGame.Direction = "east";
-      //   ThisGame = ThisGame.CurrentRoom.Navigator(ThisGame);
-      // }
-      // if (userInput == "south" || userInput == "s" || userInput == "go south")
-      // {
-      //   ThisGame.Direction = "south";
-      //   ThisGame = ThisGame.CurrentRoom.Navigator(ThisGame);
-      // }
-      // if (userInput == "west" || userInput == "w" || userInput == "go west")
-      // {
-      //   ThisGame.Direction = "west";
-      //   ThisGame = ThisGame.CurrentRoom.Navigator(ThisGame);
-      // }
-      // if (userInput == "look" || userInput == "l")
-      // {
-      //   ThisGame = CurrentRoom.Look(ThisGame);
-      // }
-      // if (true)
-      // {
-
-      // }
-      #endregion
       return ThisGame;
+    }
+    void Help()
+    {
+      Console.Clear();
+      System.Console.WriteLine("Available Commands");
+      System.Console.WriteLine("Go North/East/South/West -");
+      System.Console.WriteLine("Moves you to the next space in that direction");
+      System.Console.WriteLine("Look - Searches the Room for items");
+      System.Console.WriteLine("Take - Takes item from room");
+      System.Console.WriteLine("Inventory - Displays Player Inventory");
+      System.Console.WriteLine("Quit - ends game, you lose");
+      System.Console.WriteLine();
+      System.Console.WriteLine("Press Any Key to Continue");
+      Console.ReadKey(true);
+    }
+    public Game Header(Game game)
+    {
+      Game ThisGame = game;
+      Console.Clear();
+      System.Console.WriteLine("Commands: Go North, Go East, Go South, Go West, Look, Take, Inventory, Help, Quit");
+      System.Console.WriteLine("---------------------------------------------------------------------------------");
+      System.Console.WriteLine($"Current Location: {ThisGame.CurrentRoom.Latitude} by {ThisGame.CurrentRoom.Longitude}");
+      System.Console.WriteLine("---------------------------------------------------------------------------------");
+      System.Console.WriteLine($"Current Health  : {ThisGame.Player.Health}");
+      System.Console.WriteLine();
+      System.Console.WriteLine($"{ThisGame.CurrentRoom.Description}");
+      System.Console.WriteLine();
+      return ThisGame;
+    }
+    List<Item> Inventory(List<Item> inventory)
+    {
+      List<Item> playerInventory = inventory;
+      Console.Clear();
+      System.Console.WriteLine("Your Current Inventory Includes:");
+      foreach (Item item in playerInventory)
+      {
+        System.Console.WriteLine(item.Name);
+      }
+      System.Console.WriteLine("Press Any Key To Continue");
+      Console.ReadKey(true);
+      return playerInventory;
     }
   }
 }

@@ -71,8 +71,6 @@ namespace treasurehunter.Models
       Room.Description = RoomDescription();
       tempItem = tempItem.RandItem();
       if (tempItem != null) { Room.Inventory.Add(tempItem); }
-
-
       Room.NorthConnection = RoomNorth;
       Room.EastConnection = RoomEast;
       Room.SouthConnection = RoomSouth;
@@ -97,7 +95,6 @@ namespace treasurehunter.Models
       #endregion
       ThisGame.AllRooms.Add(Room);
       ThisGame.CurrentRoom = Room;
-
       return ThisGame;
     }
 
@@ -191,16 +188,7 @@ namespace treasurehunter.Models
     public void Look(Game game)
     {
       Game ThisGame = game;
-      Console.Clear();
-      System.Console.WriteLine("Commands: Go North, Go East, Go South, Go West, Look, Take (ITEM), Quit");
-      System.Console.WriteLine("------------------------------------------------------------------------");
-      System.Console.WriteLine($"Current Location: {ThisGame.CurrentRoom.Latitude} by {ThisGame.CurrentRoom.Longitude}");
-      System.Console.WriteLine("------------------------------------------------------------------------");
-      System.Console.WriteLine($"Current Health  : {ThisGame.Player.Health}");
-      System.Console.WriteLine();
-      System.Console.WriteLine("The Rooms Description: ");
-      System.Console.WriteLine();
-      System.Console.WriteLine(ThisGame.CurrentRoom.Description);
+      ThisGame = ThisGame.Header(ThisGame);
       if (ThisGame.CurrentRoom.Inventory.Count == 0)
       {
         System.Console.WriteLine();
@@ -214,14 +202,10 @@ namespace treasurehunter.Models
         {
           System.Console.WriteLine(item.Name);
         }
-
       }
-      // Console.ReadKey(true);
       ThisGame.GetDirection(ThisGame);
 
     }
-
-
     #region Doors
     // attached doors... Not implemented.
     public Door NorthDoor { get; set; } = null;

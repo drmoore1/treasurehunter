@@ -10,13 +10,13 @@ namespace treasurehunter
 
     static void Main(string[] args)
     {
-
+      Console.BackgroundColor = ConsoleColor.Black;
+      Console.ForegroundColor = ConsoleColor.Gray;
       Player Player = new Player("Hero");
       Room MyRoom = new Room(0, 0);
       MyRoom = MyRoom.FirstRoom();
       Game ThisGame = new Game(Player, MyRoom);
       Console.Clear();
-
       ThisGame.Greeting();
       while (ThisGame.Player.Health > 0)
       {
@@ -27,16 +27,7 @@ namespace treasurehunter
         ThisGame = ThisGame.TakeTurn(ThisGame);
       }
       ThisGame.Death();
-
-
-
-
-
-
     }
-
-
-
   }
 }
 
