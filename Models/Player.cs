@@ -10,17 +10,18 @@ namespace treasurehunter.Models
       Game ThisGame = game;
       Random random = new Random();
       int damage = (random.Next(1, 8) * ThisGame.Player.PoisonRate);
+      while (damage > 0)
+      {
 
-
-      Console.Beep();
-      Console.BackgroundColor = ConsoleColor.DarkRed;
-      Console.ForegroundColor = ConsoleColor.Black;
-      ThisGame.Header(ThisGame);
-      System.Threading.Thread.Sleep(50);
-      Console.ResetColor();
-
-      ThisGame.Player.Health -= damage;
-
+        // Console.Beep();
+        Console.BackgroundColor = ConsoleColor.DarkRed;
+        Console.ForegroundColor = ConsoleColor.Black;
+        ThisGame.Header(ThisGame);
+        System.Threading.Thread.Sleep(150);
+        Console.ResetColor();
+        ThisGame.Player.Health--;
+        damage--;
+      }
 
 
       return ThisGame;

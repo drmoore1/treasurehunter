@@ -21,7 +21,7 @@ namespace treasurehunter.Models
     public void Greeting()
     {
       Console.Clear();
-      SplashScreen();
+      Splashier();
       Console.ReadKey(true);
       Console.Clear();
       System.Console.WriteLine("You awake... cold and sore.");
@@ -112,9 +112,30 @@ namespace treasurehunter.Models
       Console.ResetColor();
       Environment.Exit(0);
     }
-    public void SplashScreen()
+    public void Splashier()
     {
-      Console.ForegroundColor = ConsoleColor.DarkRed;
+      Scroll();
+
+
+      Console.ResetColor();
+
+    }
+    public void SplashScreen(int number)
+    {
+      int num = number;
+      Console.Clear();
+      if (num == 3)
+      {
+        Console.ForegroundColor = ConsoleColor.Red;
+      }
+      if (num == 2)
+      {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+      }
+      if (num == 1)
+      {
+        Console.ForegroundColor = ConsoleColor.Black;
+      }
       System.Console.WriteLine(" ######  ####### ###  #####  ####### #     # ####### ######  ");
       System.Console.WriteLine(" #     # #     #  #  #     # #     # ##    # #       #     # ");
       System.Console.WriteLine(" #     # #     #  #  #       #     # # #   # #       #     # ");
@@ -122,17 +143,22 @@ namespace treasurehunter.Models
       System.Console.WriteLine(" #       #     #  #        # #     # #   # # #       #     # ");
       System.Console.WriteLine(" #       #     #  #  #     # #     # #    ## #       #     # ");
       System.Console.WriteLine(" #       ####### ###  #####  ####### #     # ####### ######  ");
-      Console.ResetColor();
+      // Console.ResetColor();
       System.Console.WriteLine();
+      // Console.ReadKey(true);
+      // System.Threading.Thread.Sleep(100);
       System.Console.WriteLine();
-      System.Console.WriteLine("Press Any Key To Continue");
-      Console.ReadKey(true);
+      System.Console.WriteLine("               Press Space To Continue");
+
+
+
 
     }
     public Game GetDirection(Game game)
     {
       Game ThisGame = game;
       string userInput = "";
+      Console.SetCursorPosition(19, 16);
       userInput = Console.ReadLine();
       userInput = userInput.ToLower();
       string[] UserInput = userInput.Split();
@@ -248,13 +274,19 @@ namespace treasurehunter.Models
       Game ThisGame = game;
       Console.Clear();
       System.Console.WriteLine("Commands: Go North, Go East, Go South, Go West, Look, Take, Inventory, Help, Quit");
+      Console.ForegroundColor = ConsoleColor.Gray;
       System.Console.WriteLine("---------------------------------------------------------------------------------");
+      Console.ResetColor();
       System.Console.WriteLine($"Current Location: {ThisGame.CurrentRoom.Latitude} by {ThisGame.CurrentRoom.Longitude}");
+      Console.ForegroundColor = ConsoleColor.Gray;
       System.Console.WriteLine("---------------------------------------------------------------------------------");
+      Console.ResetColor();
       System.Console.WriteLine($"Current Health  : {ThisGame.Player.Health}");
       System.Console.WriteLine();
       System.Console.WriteLine($"{ThisGame.CurrentRoom.Description}");
-      System.Console.WriteLine();
+      Console.SetCursorPosition(0, 16);
+      System.Console.WriteLine("What will you do? ");
+      Console.SetCursorPosition(0, 10);
       return ThisGame;
     }
     List<Item> Inventory(List<Item> inventory)
@@ -269,6 +301,187 @@ namespace treasurehunter.Models
       System.Console.WriteLine("Press Any Key To Continue");
       Console.ReadKey(true);
       return playerInventory;
+    }
+    public void Scroll()
+    {
+      int position = 20;
+      #region ansii
+      string line1 = " ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄        ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  ";
+      string line2 = "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░▌      ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ";
+      string line3 = "▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌     ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌";
+      string line4 = "▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌     ▐░▌          ▐░▌       ▐░▌▐░▌▐░▌    ▐░▌▐░▌          ▐░▌       ▐░▌";
+      string line5 = "▐░█▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌     ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌       ▐░▌▐░▌ ▐░▌   ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░▌       ▐░▌";
+      string line6 = "▐░░░░░░░░░░░▌▐░▌       ▐░▌     ▐░▌     ▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░▌  ▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌";
+      string line7 = "▐░█▀▀▀▀▀▀▀▀▀ ▐░▌       ▐░▌     ▐░▌      ▀▀▀▀▀▀▀▀▀█░▌▐░▌       ▐░▌▐░▌   ▐░▌ ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░▌       ▐░▌";
+      string line8 = "▐░▌          ▐░▌       ▐░▌     ▐░▌               ▐░▌▐░▌       ▐░▌▐░▌    ▐░▌▐░▌▐░▌          ▐░▌       ▐░▌";
+      string line9 = "▐░▌          ▐░█▄▄▄▄▄▄▄█░▌ ▄▄▄▄█░█▄▄▄▄  ▄▄▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌▐░▌     ▐░▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌";
+      string line10 = "▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌      ▐░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ";
+      string line11 = " ▀            ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀  ";
+      #endregion
+      Console.SetCursorPosition(0, 20);
+      if (position == 20)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 19)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 18)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 17)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 16)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 15)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        System.Console.WriteLine(line6);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 14)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        System.Console.WriteLine(line6);
+        System.Console.WriteLine(line7);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 13)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        System.Console.WriteLine(line6);
+        System.Console.WriteLine(line7);
+        System.Console.WriteLine(line8);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 12)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        System.Console.WriteLine(line6);
+        System.Console.WriteLine(line7);
+        System.Console.WriteLine(line8);
+        System.Console.WriteLine(line9);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 11)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        System.Console.WriteLine(line6);
+        System.Console.WriteLine(line7);
+        System.Console.WriteLine(line8);
+        System.Console.WriteLine(line9);
+        System.Console.WriteLine(line10);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      if (position == 10)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        System.Console.WriteLine(line6);
+        System.Console.WriteLine(line7);
+        System.Console.WriteLine(line8);
+        System.Console.WriteLine(line9);
+        System.Console.WriteLine(line10);
+        System.Console.WriteLine(line11);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      while (position < 10 && position > 1)
+      {
+        Console.Clear();
+        Console.SetCursorPosition(0, position);
+        System.Console.WriteLine(line1);
+        System.Console.WriteLine(line2);
+        System.Console.WriteLine(line3);
+        System.Console.WriteLine(line4);
+        System.Console.WriteLine(line5);
+        System.Console.WriteLine(line6);
+        System.Console.WriteLine(line7);
+        System.Console.WriteLine(line8);
+        System.Console.WriteLine(line9);
+        System.Console.WriteLine(line10);
+        System.Console.WriteLine(line11);
+        position--;
+        System.Threading.Thread.Sleep(60);
+      }
+      Console.SetCursorPosition(30, 20);
+      System.Console.WriteLine("Press Any Key To Continue");
     }
   }
 }
