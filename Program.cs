@@ -16,6 +16,7 @@ namespace treasurehunter
       MyRoom = MyRoom.FirstRoom();
       Game ThisGame = new Game(Player, MyRoom);
       Console.Clear();
+      ThisGame.Scroll();
       ThisGame.Greeting();
       while (ThisGame.Player.Health > 0)
       {
