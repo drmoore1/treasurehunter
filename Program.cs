@@ -7,9 +7,7 @@ namespace treasurehunter
     //  This program using a messy situation for room navigation
     //  it would have been MUCH easier to have the navigation done by coordinates
     //  I wanted to use multidimensional linked list to make it happen though.
-    //  I THINK that it would be easier code for a computer to run, IF I had
-    //     Not decided to then poll the list of rooms to find neighbors for a new room.
-    //     For it to run faster it would have been better to simply navigate the links
+
     static void Main(string[] args)
     {
 

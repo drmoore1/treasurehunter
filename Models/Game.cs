@@ -18,13 +18,6 @@ namespace treasurehunter.Models
     public Room CurrentRoom { get; set; }
     public string Direction { get; set; }
 
-
-    // public string GetDirection()
-    // {
-    //   System.Console.WriteLine("Which direction will you go?");
-    //   string answer = Console.ReadLine().ToLower();
-    //   return answer;
-    // }
     public void Greeting()
     {
       Console.Clear();

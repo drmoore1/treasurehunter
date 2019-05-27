@@ -76,7 +76,7 @@ namespace treasurehunter.Models
       Room.NorthConnection = RoomNorth;
       Room.EastConnection = RoomEast;
       Room.SouthConnection = RoomSouth;
-      Room.WestConnection = RoomSouth;
+      Room.WestConnection = RoomWest;
       #region Code to store THIS room as connections from existing rooms
       if (RoomNorth != null)
       {
@@ -94,28 +94,6 @@ namespace treasurehunter.Models
       {
         RoomWest.EastConnection = Room;
       }
-      #endregion
-      #region bad code!
-      // if (RoomNorth != null)
-      // {
-      //   Room.NorthConnection = RoomNorth;
-      //   Room.NorthOpen = false;
-      // }
-      // if (RoomEast != null)
-      // {
-      //   Room.EastConnection = RoomEast;
-      //   Room.EastOpen = false;
-      // }
-      // if (RoomSouth != null)
-      // {
-      //   Room.SouthConnection = RoomSouth;
-      //   Room.SouthOpen = false;
-      // }
-      // if (RoomWest != null)
-      // {
-      //   Room.WestConnection = RoomWest;
-      //   Room.WestOpen = false;
-      // }
       #endregion
       ThisGame.AllRooms.Add(Room);
       ThisGame.CurrentRoom = Room;
@@ -207,20 +185,6 @@ namespace treasurehunter.Models
     {
       Room myRoom = new Room(0, 0);
       myRoom.Description = "Your own blood has pooled on the floor from a cut on your arm.";
-      myRoom.NorthOpen = true;
-      EastOpen = true;
-      SouthOpen = true;
-      WestOpen = true;
-      NorthConnection = null;
-      EastConnection = null;
-      SouthConnection = null;
-      WestConnection = null;
-      NorthDoor = null;
-      EastDoor = null;
-      SouthDoor = null;
-      WestDoor = null;
-      Description = "An empty room, wooden floors and stone walls. This place seems familiar... ";
-      // Inventory = new List<Item> { };
       return myRoom;
     }
 
@@ -229,7 +193,9 @@ namespace treasurehunter.Models
       Game ThisGame = game;
       Console.Clear();
       System.Console.WriteLine("Commands: Go North, Go East, Go South, Go West, Look, Take (ITEM), Quit");
+      System.Console.WriteLine("------------------------------------------------------------------------");
       System.Console.WriteLine($"Current Location: {ThisGame.CurrentRoom.Latitude} by {ThisGame.CurrentRoom.Longitude}");
+      System.Console.WriteLine("------------------------------------------------------------------------");
       System.Console.WriteLine($"Current Health  : {ThisGame.Player.Health}");
       System.Console.WriteLine();
       System.Console.WriteLine("The Rooms Description: ");
@@ -255,15 +221,9 @@ namespace treasurehunter.Models
 
     }
 
-    #region Bools for Connecions
-    //booleans to establish if connection is available to that edge
-    public bool NorthOpen { get; set; } = true;
-    public bool EastOpen { get; set; } = true;
-    public bool SouthOpen { get; set; } = true;
-    public bool WestOpen { get; set; } = true;
-    #endregion
+
     #region Doors
-    // attached doors... 
+    // attached doors... Not implemented.
     public Door NorthDoor { get; set; } = null;
     public Door EastDoor { get; set; } = null;
     public Door SouthDoor { get; set; } = null;
@@ -279,11 +239,8 @@ namespace treasurehunter.Models
     //Description and room inventory
     public string Description { get; set; }
     public List<Item> Inventory { get; set; } = new List<Item> { };
-    //create X/Y coordinates to make it easier for people to navigate
     public int Latitude { get; set; }
     public int Longitude { get; set; }
-
-
 
 
   }
