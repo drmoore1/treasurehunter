@@ -1,5 +1,6 @@
 ﻿using System;
 using treasurehunter.Models;
+
 namespace treasurehunter
 {
   class Program
