@@ -773,5 +773,29 @@ namespace treasurehunter.Models
       Console.ReadKey(true);
     }
 
+    //  Ok....  Just messing around here.... Unless it works...
+    //      The idea is to create small objects that simply look for 2 letter combinations in a string
+    //           if enough 2 letter combinations in a string exist,   
+    //              It will select the GREATEST likely input choice...
+    //              Will use this instead of matching exact strings if it works...
+    public void Thinker(string input)
+    {
+      string Input = input;
+      Network firstNetwork = new Network(1);
+      int counter = 32;
+      while (counter > 0)
+      {
+        Neural tempNeural = new Neural(input, counter);
+        tempNeural.CommandNumber = counter;
+        firstNetwork.Layer.Add(tempNeural);
+
+        counter--;
+      }
+      //  Now to create Either ANOTHER layer to check above layers... IE NO (true)+OR(true)+RT(true)+TH(true) would mean NORTH 100%;
+      //  or....  Count the nerons that true'd for each word, set a base line % required to be true and take the high score...
+
+
+
+    }
   }
 }
