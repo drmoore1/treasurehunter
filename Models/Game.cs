@@ -493,24 +493,14 @@ namespace treasurehunter.Models
           {
             foreach (Item item in ThisGame.CurrentRoom.Inventory)
             {
-              if (item.Name.ToLower() == "poison")
+              if (item.Name.ToLower() == word2)
               {
                 ThisGame.CurrentRoom.Inventory.Remove(item);
+                ThisGame.Player.Inventory.Add(item);
                 ThisGame.Player.PoisonRate++;
                 return ThisGame;
               }
-              if (item.Name.ToLower() == "antidote")
-              {
-                ThisGame.CurrentRoom.Inventory.Remove(item);
-                ThisGame.Player.PoisonRate--;
-                return ThisGame;
-              }
-              if (item.Name.ToLower() != "poison" && item.Name.ToLower() != "antidote")
-              {
-                ThisGame.Player.Inventory.Add(item);
-                ThisGame.CurrentRoom.Inventory.Remove(item);
-                return ThisGame;
-              }
+
 
 
             }
@@ -580,10 +570,12 @@ namespace treasurehunter.Models
       List<Item> playerInventory = inventory;
       Console.Clear();
       System.Console.WriteLine("Your Current Inventory Includes:");
+      System.Console.WriteLine();
       foreach (Item item in playerInventory)
       {
-        System.Console.WriteLine(item.Name);
+        System.Console.WriteLine($"{item.Name}:  {item.Description}");
       }
+      System.Console.WriteLine();
       System.Console.WriteLine("Press Any Key To Continue");
       Console.ReadKey(true);
       return playerInventory;

@@ -9,7 +9,7 @@ namespace treasurehunter.Models
     {
       Game ThisGame = game;
       Random random = new Random();
-      int damage = (random.Next(1, 8) * ThisGame.Player.PoisonRate);
+      int damage = (random.Next(1, 5) * ThisGame.Player.PoisonRate);
       while (damage > 0)
       {
 

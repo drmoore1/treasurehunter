@@ -5,9 +5,6 @@ namespace treasurehunter
 {
   class Program
   {
-    //  This program using a messy situation for room navigation
-    //  it would have been MUCH easier to have the navigation done by coordinates
-    //  I wanted to use multidimensional linked list to make it happen though.
 
     static void Main(string[] args)
     {
@@ -17,8 +14,8 @@ namespace treasurehunter
       MyRoom = MyRoom.FirstRoom();
       Game ThisGame = new Game(Player, MyRoom);
       Console.Clear();
-      ThisGame.Scroll();
-      ThisGame.Greeting();
+      // ThisGame.Scroll();
+      // ThisGame.Greeting();
       while (ThisGame.Player.Health > 0)
       {
         if (ThisGame.Player.PoisonRate == 0)

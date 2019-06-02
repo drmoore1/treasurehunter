@@ -16,7 +16,7 @@ namespace treasurehunter.Models
     public Game RoomMaker(Game game)
     {
       Game ThisGame = game;
-      Item tempItem = new Item("temp");
+      Item tempItem = new Item("temp", "");
       Room RoomNorth = null;
       Room RoomEast = null;
       Room RoomSouth = null;
